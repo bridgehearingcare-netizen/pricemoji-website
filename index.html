@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PriCeo — Your Price on the Go</title>
+    <meta name="description" content="PriCeo helps you scan, compare, and track prices instantly. Be the CEO of your prices.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #11181C;
+            line-height: 1.6;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #11181C;
+        }
+        .logo img { width: 36px; height: 36px; border-radius: 8px; }
+        .logo span { font-size: 20px; font-weight: 700; }
+        nav a {
+            margin-left: 24px;
+            text-decoration: none;
+            color: #687076;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        nav a:hover { color: #11181C; }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        .hero h1 span { color: #0a7ea4; }
+        .hero p {
+            font-size: 20px;
+            color: #687076;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f5f5f5;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #11181C;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
+            border-top: 1px solid #E5E7EB;
+        }
+        .features h2 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: #f9fafb;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .feature-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            font-size: 14px;
+            color: #687076;
+        }
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid #E5E7EB;
+        }
+        .cta h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+        .cta p { color: #687076; margin-bottom: 24px; }
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #11181C;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .store-btn:hover { background: #2a3038; }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #E5E7EB;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #687076;
+            font-size: 14px;
+        }
+        .footer-links a:hover { color: #11181C; }
+        .copyright {
+            font-size: 13px;
+            color: #9BA1A6;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 17px; }
+            nav a { margin-left: 16px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <img src="icon.png" alt="PriCeo">
+                <span>PriCeo</span>
+            </a>
+            <nav>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="support.html">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Your Price <span>on the Go</span></h1>
+                <p>Scan barcodes, compare prices across stores, and never overpay again. Be the CEO of your prices.</p>
+                <div class="badge-row">
+                    <div class="badge">&#128247; Barcode Scanner</div>
+                    <div class="badge">&#128200; Price History</div>
+                    <div class="badge">&#128276; Price Alerts</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Why PriCeo?</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128270;</div>
+                        <h3>Instant Price Compare</h3>
+                        <p>Scan any barcode and see prices from nearby stores in seconds.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128202;</div>
+                        <h3>Price History</h3>
+                        <p>Track how prices change over time. Buy at the right moment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128276;</div>
+                        <h3>Smart Alerts</h3>
+                        <p>Set target prices and get notified when items drop.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">&#127968;</div>
+                        <h3>Community Deals</h3>
+                        <p>Share and discover deals from shoppers in your area.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128221;</div>
+                        <h3>Shopping Lists</h3>
+                        <p>Plan your shop and find the cheapest store for your whole list.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">&#128274;</div>
+                        <h3>Private & Secure</h3>
+                        <p>Your data stays on your device. No selling to third parties.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Download PriCeo</h2>
+                <p>Available on iOS and Android</p>
+                <div class="store-buttons">
+                    <a href="#" class="store-btn">&#63743; App Store</a>
+                    <a href="#" class="store-btn">&#9654; Google Play</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+            </div>
+            <p class="copyright">&copy; 2025 PriCeo. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
