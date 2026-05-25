@@ -79,6 +79,27 @@
             font-weight: 500;
             color: #11181C;
         }
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+        .primary-btn, .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            padding: 14px 22px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .primary-btn { background: #11181C; color: #ffffff; }
+        .primary-btn:hover { background: #2a3038; }
+        .secondary-btn { background: #EAF6FA; color: #0a7ea4; }
+        .secondary-btn:hover { background: #D7EEF5; }
 
         /* Features */
         .features {
@@ -183,6 +204,7 @@
                 <span>PriceMoji</span>
             </a>
             <nav>
+                <a href="waitlist/">Waitlist</a>
                 <a href="privacy.html">Privacy</a>
                 <a href="terms.html">Terms</a>
                 <a href="support.html">Support</a>
@@ -199,6 +221,10 @@
                     <div class="badge">&#128247; Barcode Scanner</div>
                     <div class="badge">&#128200; Price History</div>
                     <div class="badge">&#128276; Price Alerts</div>
+                </div>
+                <div class="hero-actions">
+                    <a href="waitlist/" class="primary-btn">Join the early-access waitlist</a>
+                    <a href="support.html" class="secondary-btn">Contact the team</a>
                 </div>
             </div>
         </section>
@@ -243,11 +269,11 @@
 
         <section class="cta">
             <div class="container">
-                <h2>Download PriceMoji</h2>
-                <p>Available on iOS and Android</p>
+                <h2>Get early access</h2>
+                <p>Join the PriceMoji waitlist and receive the Founder Pro Pass offer when the app launches.</p>
                 <div class="store-buttons">
-                    <a href="#" class="store-btn">&#63743; App Store</a>
-                    <a href="#" class="store-btn">&#9654; Google Play</a>
+                    <a href="waitlist/" class="store-btn">Join Waitlist</a>
+                    <a href="support.html" class="store-btn">Creator Enquiry</a>
                 </div>
             </div>
         </section>
@@ -256,6 +282,7 @@
     <footer>
         <div class="container">
             <div class="footer-links">
+                <a href="waitlist/">Waitlist</a>
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
                 <a href="support.html">Support</a>
