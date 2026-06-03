@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PriceMoji — Smart Price Comparison</title>
-    <meta name="description" content="PriceMoji helps you scan, compare, and track prices instantly. Save money on every purchase with AI-powered price comparison.">
+    <title>PriceMoji — Smart Price Comparison & Savings</title>
+    <meta name="description" content="Compare prices in your local currency while travelling, scan receipts to detect overcharges, share live shopping lists, discover global deals, and access exclusive coupons. Your AI-powered shopping companion.">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,12 +14,17 @@
             color: #11181C;
             line-height: 1.6;
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-        
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
         /* Header */
         header {
-            padding: 20px 0;
+            padding: 16px 0;
             border-bottom: 1px solid #E5E7EB;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            z-index: 100;
         }
         .header-inner {
             display: flex;
@@ -41,6 +46,7 @@
             color: #687076;
             font-size: 14px;
             font-weight: 500;
+            transition: color 0.2s;
         }
         nav a:hover { color: #11181C; }
 
@@ -48,6 +54,7 @@
         .hero {
             text-align: center;
             padding: 80px 0 60px;
+            background: linear-gradient(180deg, #f0f9fc 0%, #ffffff 100%);
         }
         .hero h1 {
             font-size: 48px;
@@ -59,83 +66,278 @@
         .hero p {
             font-size: 20px;
             color: #687076;
-            max-width: 500px;
-            margin: 0 auto 40px;
+            max-width: 580px;
+            margin: 0 auto 32px;
         }
         .badge-row {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
+            margin-bottom: 32px;
         }
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             background: #f5f5f5;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-size: 14px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 500;
             color: #11181C;
         }
-        .hero-actions {
+
+        /* Store Buttons */
+        .store-buttons {
             display: flex;
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin-top: 28px;
+            margin-top: 8px;
         }
-        .primary-btn, .secondary-btn {
+        .store-btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 10px;
+            background: #11181C;
+            color: #fff;
+            padding: 14px 24px;
             border-radius: 12px;
-            padding: 14px 22px;
-            font-size: 14px;
-            font-weight: 700;
             text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+            border: 1px solid #333;
         }
-        .primary-btn { background: #11181C; color: #ffffff; }
-        .primary-btn:hover { background: #2a3038; }
-        .secondary-btn { background: #EAF6FA; color: #0a7ea4; }
-        .secondary-btn:hover { background: #D7EEF5; }
+        .store-btn:hover { transform: translateY(-2px); background: #2a3038; }
+        .store-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+        .store-btn-text { text-align: left; }
+        .store-btn-text small { display: block; font-size: 10px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+        .store-btn-text span { display: block; font-size: 15px; font-weight: 600; margin-top: 1px; }
 
-        /* Features */
-        .features {
-            padding: 60px 0;
+        /* Key Features (Highlighted) */
+        .key-features {
+            padding: 70px 0;
             border-top: 1px solid #E5E7EB;
         }
-        .features h2 {
+        .key-features h2 {
             text-align: center;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 12px;
         }
-        .feature-grid {
+        .key-features > .container > p {
+            text-align: center;
+            font-size: 17px;
+            color: #687076;
+            margin-bottom: 48px;
+        }
+        .key-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: 1fr;
             gap: 24px;
         }
-        .feature-card {
+        @media (min-width: 600px) {
+            .key-grid { grid-template-columns: 1fr 1fr; }
+        }
+        .key-card {
             background: #f9fafb;
             border: 1px solid #E5E7EB;
             border-radius: 16px;
-            padding: 24px;
+            padding: 28px 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .feature-card h3 {
-            font-size: 16px;
-            font-weight: 600;
+        .key-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(10,126,164,0.08);
+        }
+        .key-card.featured {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #f0f9fc, #e8f4f8);
+            border-color: #b3e0f0;
+        }
+        .key-icon {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+        .key-card h3 {
+            font-size: 18px;
+            font-weight: 700;
             margin-bottom: 8px;
+            color: #11181C;
         }
-        .feature-card p {
-            font-size: 14px;
-            color: #687076;
+        .key-card p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.5;
         }
-        .feature-icon {
-            font-size: 28px;
+        .key-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-top: 14px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 70px 0;
+            border-top: 1px solid #E5E7EB;
+            text-align: center;
+        }
+        .how-it-works h2 {
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 12px;
         }
+        .how-it-works > .container > p {
+            font-size: 17px;
+            color: #687076;
+            margin-bottom: 48px;
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        @media (min-width: 700px) {
+            .steps { flex-direction: row; gap: 0; }
+        }
+        .step {
+            flex: 1;
+            position: relative;
+            padding: 0 16px;
+        }
+        .step-phone {
+            width: 160px;
+            height: 280px;
+            margin: 0 auto 20px;
+            background: #1a1a2e;
+            border-radius: 24px;
+            position: relative;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+            overflow: hidden;
+            border: 3px solid #333;
+        }
+        .step-phone::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 5px;
+            background: #333;
+            border-radius: 3px;
+            z-index: 2;
+        }
+        .step-screen {
+            position: absolute;
+            top: 18px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+        }
+        .step-screen-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .step-screen-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .step-screen-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #4ADE80;
+            margin-top: 8px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #0a7ea4;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+        .step h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #11181C;
+            margin-bottom: 6px;
+        }
+        .step p {
+            font-size: 13px;
+            color: #687076;
+            line-height: 1.4;
+        }
+        .step-connector {
+            display: none;
+        }
+        @media (min-width: 700px) {
+            .step-connector {
+                display: block;
+                position: absolute;
+                top: 140px;
+                right: -16px;
+                width: 32px;
+                height: 2px;
+                background: linear-gradient(90deg, #0a7ea4, #4ADE80);
+                z-index: 1;
+            }
+            .step-connector::after {
+                content: '';
+                position: absolute;
+                right: -3px;
+                top: -3px;
+                width: 8px;
+                height: 8px;
+                border-top: 2px solid #4ADE80;
+                border-right: 2px solid #4ADE80;
+                transform: rotate(45deg);
+            }
+        }
+
+        /* Stats */
+        .stats-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f0f9fc 0%, #e8f4f8 100%);
+            text-align: center;
+        }
+        .stats-section h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+        .stats-section > .container > p { font-size: 16px; color: #555; margin-bottom: 32px; }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2.2rem; font-weight: 800; color: #0a7ea4; }
+        .stat-label { font-size: 13px; color: #687076; margin-top: 4px; }
 
         /* CTA */
         .cta {
@@ -144,26 +346,7 @@
             border-top: 1px solid #E5E7EB;
         }
         .cta h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
-        .cta p { color: #687076; margin-bottom: 24px; }
-        .store-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .store-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #11181C;
-            color: #fff;
-            padding: 14px 24px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .store-btn:hover { background: #2a3038; }
+        .cta p { color: #687076; margin-bottom: 24px; font-size: 16px; }
 
         /* Footer */
         footer {
@@ -193,6 +376,7 @@
             .hero h1 { font-size: 32px; }
             .hero p { font-size: 17px; }
             nav a { margin-left: 16px; font-size: 13px; }
+            .key-features h2, .how-it-works h2 { font-size: 26px; }
         }
     </style>
 </head>
@@ -204,9 +388,8 @@
                 <span>PriceMoji</span>
             </a>
             <nav>
-                <a href="waitlist/">Waitlist</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
                 <a href="support.html">Support</a>
             </nav>
         </div>
@@ -215,53 +398,145 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Your Price <span>on the Go</span></h1>
-                <p>Scan barcodes, compare prices across stores, and never overpay again. Save money on every purchase with AI-powered price comparison.</p>
+                <h1>Never <span>Overpay</span> Again</h1>
+                <p>Compare prices in your local currency while travelling, scan receipts to spot overcharges, share live shopping lists, and discover deals from stores worldwide.</p>
                 <div class="badge-row">
-                    <div class="badge">&#128247; Barcode Scanner</div>
-                    <div class="badge">&#128200; Price History</div>
-                    <div class="badge">&#128276; Price Alerts</div>
+                    <div class="badge">&#9992;&#65039; Travel Price Check</div>
+                    <div class="badge">&#129534; Receipt Scanner</div>
+                    <div class="badge">&#128203; Live Shopping Lists</div>
+                    <div class="badge">&#127760; Global Deals</div>
+                    <div class="badge">&#127915; Special Coupons</div>
                 </div>
-                <div class="hero-actions">
-                    <a href="waitlist/" class="primary-btn">Join the early-access waitlist</a>
-                    <a href="support.html" class="secondary-btn">Contact the team</a>
+                <div class="store-buttons">
+                    <a href="#" class="store-btn">
+                        <svg viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                        <div class="store-btn-text">
+                            <small>Download on the</small>
+                            <span>App Store</span>
+                        </div>
+                    </a>
+                    <a href="#" class="store-btn">
+                        <svg viewBox="0 0 24 24" fill="white"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+                        <div class="store-btn-text">
+                            <small>Get it on</small>
+                            <span>Google Play</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="features">
+        <section class="key-features" id="features">
             <div class="container">
-                <h2>Why PriceMoji?</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">&#128270;</div>
-                        <h3>Instant Price Compare</h3>
-                        <p>Scan any barcode and see prices from nearby stores in seconds.</p>
+                <h2>Save Money Everywhere You Shop</h2>
+                <p>Five powerful features that put savings in your pocket</p>
+                <div class="key-grid">
+
+                    <div class="key-card">
+                        <div class="key-icon">&#9992;&#65039;</div>
+                        <h3>Travel Price Check</h3>
+                        <p>Travelling abroad? Compare prices in your <strong>local currency</strong> so you instantly know if a deal is worth it. Auto-detects when you're overseas and converts prices in real-time.</p>
+                        <span class="key-badge" style="background: #e3f2fd; color: #1565c0;">Works in 150+ countries</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">&#128202;</div>
-                        <h3>Price History</h3>
-                        <p>Track how prices change over time. Buy at the right moment.</p>
+
+                    <div class="key-card">
+                        <div class="key-icon">&#129534;</div>
+                        <h3>Receipt Overcharge Detection</h3>
+                        <p>Scan your receipt after shopping to see if you <strong>overpaid</strong> compared to other stores. Get suggestions on where to buy cheaper next time and optimise your spending habits.</p>
+                        <span class="key-badge" style="background: #fce4ec; color: #c62828;">Save up to 30% on groceries</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">&#128276;</div>
-                        <h3>Smart Alerts</h3>
-                        <p>Set target prices and get notified when items drop.</p>
+
+                    <div class="key-card featured">
+                        <div class="key-icon">&#128203;</div>
+                        <h3>Shared Live Shopping Lists</h3>
+                        <p>Create shopping lists that <strong>update in real-time</strong> for your whole family. See who's shopping, tick items off together, and never buy duplicates again. Automatically finds the cheapest store for your entire list.</p>
+                        <span class="key-badge" style="background: #e8f5e9; color: #2e7d32;">Real-time collaboration</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">&#127968;</div>
-                        <h3>Community Deals</h3>
-                        <p>Share and discover deals from shoppers in your area.</p>
+
+                    <div class="key-card">
+                        <div class="key-icon">&#127760;</div>
+                        <h3>Global Deals &mdash; Local & Online</h3>
+                        <p>Discover the <strong>latest deals</strong> from local stores near you and online retailers across the globe. Never miss a price drop on products you care about. Updated daily.</p>
+                        <span class="key-badge" style="background: #fff3e0; color: #e65100;">80+ retailers tracked</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">&#128221;</div>
-                        <h3>Shopping Lists</h3>
-                        <p>Plan your shop and find the cheapest store for your whole list.</p>
+
+                    <div class="key-card">
+                        <div class="key-icon">&#127915;</div>
+                        <h3>Special Coupons & Offers</h3>
+                        <p>Access <strong>exclusive coupons</strong> subject to availability from participating stores. Stack savings on top of the best prices we find for you automatically.</p>
+                        <span class="key-badge" style="background: #f3e5f5; color: #6a1b9a;">Subject to availability</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">&#128274;</div>
-                        <h3>Private & Secure</h3>
-                        <p>Your data stays on your device. No selling to third parties.</p>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <p>From scan to savings in three simple steps</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-phone">
+                            <div class="step-screen" style="background: linear-gradient(135deg, #1e3a5f, #0a7ea4);">
+                                <div class="step-screen-icon">&#128247;</div>
+                                <div class="step-screen-text">Scan barcode or<br>take a photo</div>
+                            </div>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-number">1</div>
+                        <h3>Scan Any Product</h3>
+                        <p>Point your camera at a barcode, product, or receipt. Our AI identifies it instantly.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-phone">
+                            <div class="step-screen" style="background: linear-gradient(135deg, #1a2e1a, #2e7d32);">
+                                <div class="step-screen-icon">&#128269;</div>
+                                <div class="step-screen-text">Comparing prices<br>across 80+ stores</div>
+                                <div class="step-screen-price">$3.00</div>
+                            </div>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-number">2</div>
+                        <h3>Compare Prices</h3>
+                        <p>See prices from dozens of local and online retailers, sorted by cheapest first.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-phone">
+                            <div class="step-screen" style="background: linear-gradient(135deg, #3a1a5f, #6a1b9a);">
+                                <div class="step-screen-icon">&#128176;</div>
+                                <div class="step-screen-text">You saved</div>
+                                <div class="step-screen-price">$47.20</div>
+                            </div>
+                        </div>
+                        <div class="step-number">3</div>
+                        <h3>Save Money</h3>
+                        <p>Buy at the best price, track deals, and watch your savings grow over time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <h2>Trusted by Smart Shoppers</h2>
+                <p>Join thousands of users who save money every week with PriceMoji</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">80+</div>
+                        <div class="stat-label">Retailers tracked</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Countries supported</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Price monitoring</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Average savings</div>
                     </div>
                 </div>
             </div>
@@ -269,11 +544,23 @@
 
         <section class="cta">
             <div class="container">
-                <h2>Get early access</h2>
-                <p>Join the PriceMoji waitlist and receive the Founder Pro Pass offer when the app launches.</p>
+                <h2>Start Saving Today</h2>
+                <p>Download PriceMoji and never overpay again. Available on iOS and Android.</p>
                 <div class="store-buttons">
-                    <a href="waitlist/" class="store-btn">Join Waitlist</a>
-                    <a href="support.html" class="store-btn">Creator Enquiry</a>
+                    <a href="#" class="store-btn">
+                        <svg viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                        <div class="store-btn-text">
+                            <small>Download on the</small>
+                            <span>App Store</span>
+                        </div>
+                    </a>
+                    <a href="#" class="store-btn">
+                        <svg viewBox="0 0 24 24" fill="white"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z"/></svg>
+                        <div class="store-btn-text">
+                            <small>Get it on</small>
+                            <span>Google Play</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -282,7 +569,6 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="waitlist/">Waitlist</a>
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
                 <a href="support.html">Support</a>
